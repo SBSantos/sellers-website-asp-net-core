@@ -3,10 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using SalesWebApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-ServerVersion serverVersion = ServerVersion.Create(MySqlServerVersion.LatestSupportedServerVersion.Version, Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql);
+ServerVersion serverVersion = ServerVersion.Create(
+    MySqlServerVersion.LatestSupportedServerVersion.Version, 
+    Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql);
 
-builder.Services.AddDbContext<SalesWebAppContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("SalesWebAppContext") ?? throw new InvalidOperationException("Connection string 'SalesWebAppContext' not found."),
+builder.Services.AddDbContext<SalesWebAppContext>(options => options.UseMySql(
+    builder.Configuration.GetConnectionString("SalesWebAppContext") ?? throw new InvalidOperationException("Connection string 'SalesWebAppContext' not found."),
     serverVersion,
     builder => builder.MigrationsAssembly("SalesWebApp")));
 
