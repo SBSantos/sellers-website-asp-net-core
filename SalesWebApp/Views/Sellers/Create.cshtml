@@ -11,6 +11,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<form asp-action="Create">
+			 <div asp-validation-summary="All" class="text-danger"></div>
 			<div>
 				<label asp-for="Seller.Name" class="form-label mt-3"></label>
 				<input asp-for="Seller.Name" class="form-control" />
