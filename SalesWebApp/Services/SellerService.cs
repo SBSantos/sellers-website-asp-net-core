@@ -33,10 +33,7 @@ namespace SalesWebApp.Services
         public async Task RemoveAsync(int id)
         {
             bool saleNull = await _context.Seller.AllAsync(x => x.Sales == null);
-            if (!saleNull)
-            {
-                throw new IntegrityException("Not possible to remove seller who has registered sales");
-            }
+            if (!saleNull) { throw new IntegrityException("Not possible to remove seller who has registered sales"); }
 
             var obj = await _context.Seller.FindAsync(id);
             _context.Seller.Remove(obj);
