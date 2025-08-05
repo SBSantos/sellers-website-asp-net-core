@@ -53,7 +53,7 @@ namespace SalesWebApp.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("SelerId")
+                    b.Property<int>("SellerId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -61,7 +61,7 @@ namespace SalesWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SelerId");
+                    b.HasIndex("SellerId");
 
                     b.ToTable("SalesRecord");
                 });
@@ -100,13 +100,13 @@ namespace SalesWebApp.Migrations
 
             modelBuilder.Entity("SalesWebApp.Models.SalesRecord", b =>
                 {
-                    b.HasOne("SalesWebApp.Models.Seller", "Seler")
+                    b.HasOne("SalesWebApp.Models.Seller", "Seller")
                         .WithMany("Sales")
-                        .HasForeignKey("SelerId")
+                        .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Seler");
+                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("SalesWebApp.Models.Seller", b =>

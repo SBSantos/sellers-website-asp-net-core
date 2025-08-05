@@ -52,14 +52,14 @@ namespace SalesWebApp.Migrations
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Amount = table.Column<double>(type: "double", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    SelerId = table.Column<int>(type: "int", nullable: false)
+                    SellerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesRecord", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesRecord_Seller_SelerId",
-                        column: x => x.SelerId,
+                        name: "FK_SalesRecord_Seller_SellerId",
+                        column: x => x.SellerId,
                         principalTable: "Seller",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -67,9 +67,9 @@ namespace SalesWebApp.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesRecord_SelerId",
+                name: "IX_SalesRecord_SellerId",
                 table: "SalesRecord",
-                column: "SelerId");
+                column: "SellerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seller_DepartmentId",
